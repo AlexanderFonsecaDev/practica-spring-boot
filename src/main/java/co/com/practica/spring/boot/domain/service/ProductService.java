@@ -1,4 +1,4 @@
-package co.com.practica.spring.boot.domain.services;
+package co.com.practica.spring.boot.domain.service;
 
 import co.com.practica.spring.boot.domain.Product;
 import co.com.practica.spring.boot.domain.repository.ProductRepository;
@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
-
     @Autowired
     private ProductRepository productRepository;
 
@@ -31,10 +30,9 @@ public class ProductService {
     }
 
     public boolean delete(int productId) {
-        return productRepository.getProduct(productId).map(product -> {
-            productRepository.delete(product.getProductId());
+        return getProduct(productId).map(product -> {
+            productRepository.delete(productId);
             return true;
         }).orElse(false);
     }
-
 }
